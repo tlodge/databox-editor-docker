@@ -64,19 +64,19 @@ arbiter:
   container_name:
     arbiter
 
-red:
-  build:
-    node-red
-  ports:
-    - "1880:1880"
-  links:
-    - mosquitto
-    - arbiter
-    - mock-datasource:databox-driver-mobile.store
-  command:
-    node /root/node-red/red.js
-  container_name:
-    red
+#red:
+#  build:
+#    node-red-tester 
+#  ports:
+#    - "1880:1880"
+#  links:
+#    - mosquitto
+#    - arbiter
+#    - mock-datasource:databox-driver-mobile.store
+#  command:
+#    node /root/node-red/red.js
+#  container_name:
+#    red
 
 #editor:
 #  build:
