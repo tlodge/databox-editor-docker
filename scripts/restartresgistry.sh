@@ -1,9 +1,11 @@
 #!/bin/sh
-ehco "not stopping regsitry - edit file if you REALLY want to!"
+echo "waiting 10 secs before I do anything incase you want to cancel this"
+sleep 10
+echo "ok, you asked for it"
 
-#docker stop registry
-#docker rm registry
-#docker run -d -p 5000:5000 --restart=always --name registry registry:2
+docker stop registry
+docker rm registry
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
 #arbiter
 docker tag registry.upintheclouds.org/databox-arbiter $1/databox-arbiter
@@ -14,11 +16,11 @@ docker tag registry.upintheclouds.org/databox-directory $1/databox-directory
 docker push $1/databox-directory
 
 #node-red
-docker tag databox/red $1/databox/red
+docker tag registry.upintheclouds.org/databox/red $1/databox/red
 docker push $1/databox/red
 
 #stores
-docker tag databox/databox-store-passthrough $1/databox-store-passthrough
+docker tag registry.upintheclouds.org/databox-store-passthrough $1/databox-store-passthrough
 docker push $1/databox-store-passthrough
 docker tag registry.upintheclouds.org/datastore-timeseries $1/datastore-timeseries
 docker push $1/datastore-timeseries
@@ -26,7 +28,7 @@ docker tag registry.upintheclouds.org/databox-store-blob $1/databox-store-blob
 docker push $1/databox-store-blob
 
 #drivers
-docker tag databox/databox-driver-mobile $1/databox-driver-mobile
+docker tag registry.upintheclouds.org/databox-driver-mobile $1/databox-driver-mobile
 docker push $1/databox-driver-mobile
 docker tag registry.upintheclouds.org/databox-driver-phidgets $1/databox-driver-phidgets 
 docker push $1/databox-driver-phidgets
