@@ -1,7 +1,9 @@
 #!/bin/sh
-docker stop registry
-docker rm registry
-docker run -d -p 5000:5000 --restart=always --name registry registry:2
+ehco "not stopping regsitry - edit file if you REALLY want to!"
+
+#docker stop registry
+#docker rm registry
+#docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
 #arbiter
 docker tag registry.upintheclouds.org/databox-arbiter $1/databox-arbiter
