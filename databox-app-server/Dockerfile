@@ -9,6 +9,7 @@ RUN apt-get install -y git
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN echo "app server"
 RUN cd /root && git clone https://github.com/tlodge/db-app-server.git 
 RUN cd /root/db-app-server && npm install
 #RUN mkdir -p /data/mongo

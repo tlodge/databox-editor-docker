@@ -5,11 +5,11 @@ RUN apt-get install -y git
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN echo "once more"
-RUN echo "And again"
-RUN echo "building"
-RUN echo "again"
+RUN echo "building again"
 RUN echo "and again"
+RUN echo "and again"
+RUN echo "no cahce"
+RUN echo "once more"
 RUN cd /root && git clone https://github.com/me-box/databox-datasource-mock.git
 RUN cd /root/databox-datasource-mock && npm install
 RUN npm install -g forever
