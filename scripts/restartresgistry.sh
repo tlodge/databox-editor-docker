@@ -40,7 +40,9 @@ docker tag registry.upintheclouds.org/databox-os-monitor-driver $1/databox-os-mo
 docker push $1/databox-os-monitor-driver
 docker tag registry.upintheclouds.org/databox-driver-phillipshue $1/databox-driver-phillipshue
 docker push $1/databox-driver-phillipshue
-
-
+docker tag registry.upintheclouds.org/databox-driver-tplink-hs100 $1/databox-driver-tplink-hs100 
+docker push $1/databox-driver-tplink-hs100
+docker tag registry.upintheclouds.org/databox-driver-wirelessthings $1/databox-driver-wirelessthings
+docker push $1/databox-driver-wirelessthings
 docker tag registry.upintheclouds.org/databox-notifications $1/databox-notifications
 docker push $1/databox-notifications
