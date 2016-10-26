@@ -14,13 +14,13 @@ mongo:
   container_name:
     mongo
   
-mosquitto:
-  build:
-   mosquitto
-  ports:
-    - "1883:1883"
-  container_name:
-   mosquitto
+#mosquitto:
+#  build:
+#   mosquitto
+#  ports:
+#    - "1883:1883"
+#  container_name:
+#   mosquitto
 
 #companionapp:
 #  build:
@@ -49,8 +49,8 @@ appserver:
 mock-datasource:
   build:
     databox-datasource-mock
-  links:
-    - mosquitto
+# links:
+#    - mosquitto
   command:
     /root/start.sh
   container_name:
