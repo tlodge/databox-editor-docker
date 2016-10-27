@@ -18,4 +18,4 @@ docker pull registry.upintheclouds.org/databox-os-monitor-driver
 docker pull registry.upintheclouds.org/databox-driver-phillipshue
 docker pull registry.upintheclouds.org/databox-driver-tplink-hs100
 docker pull registry.upintheclouds.org/databox-driver-wirelessthings
-
+docker pull registry.upintheclouds.org/databox-driver-neato
