@@ -46,3 +46,5 @@ docker tag registry.upintheclouds.org/databox-driver-wirelessthings $1/databox-d
 docker push $1/databox-driver-wirelessthings
 docker tag registry.upintheclouds.org/databox-notifications $1/databox-notifications
 docker push $1/databox-notifications
+docker tag registry.upintheclouds.org/databox-driver-neato $1/databox-driver-neato
+docker push $1/databox-driver-neato
