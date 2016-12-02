@@ -1,1 +1,1 @@
-cd /root/node-red && grunt nodemon
+cd /usr/lib/node_modules/node-red/  && node red 
