@@ -8,6 +8,7 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN echo "once more"
 RUN echo "building"
 RUN echo "and ahain"
+RUN echo "what a pain"
 RUN cd /root && git clone https://github.com/me-box/databox-datasource-mock.git
 RUN cd /root/databox-datasource-mock && npm install
 RUN npm install -g forever

@@ -4,7 +4,7 @@ var request= require('superagent');
 
 var _saveToAppStore = function(manifest){
 	request
-  		.post("https://store.iotdatabox.com/app/post")
+  		.post("http://store.upintheclouds.org/app/post")
   		.send(manifest)
  		.set('Accept', 'application/json')
   		.type('form')
@@ -33,6 +33,8 @@ fs.readdir(dir, function(err, items) {
 	    
 	    fs.readFile(dir+"/"+name, 'utf8', function (err,data) {
 		var manifest = JSON.parse(data);
+		console.log("sending manifest:");
+		console.log(manifest);
 		var data = {
 			manifest: JSON.stringify(manifest),
 										

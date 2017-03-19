@@ -1,1 +1,27 @@
-{"manifest-version":1,"name":"databox-os-monitor-driver","version":"0.1.0","description":"A Databox driver to monitor the local os","author":"Anthony Brown <Anthony.Brown@nottingham.ac.uk> ()","license":"MIT","databox-type":"driver","tags":["monitor","os"],"homepage":"https://github.com/me-box/databox-os-monitor-driver","repository":{"type":"git","url":"git+https://github.com/me-box/databox-os-monitor-driver.git"},"network-permissions":[],"hardware-permissions":[],"resource-requirements":{"store":"datastore-timeseries"}}
+{
+	"manifest-version": 1,
+
+	"name": "databox-os-monitor-driver",
+	"version": "0.1.0",
+
+	"description": "A Databox driver to monitor the local os",
+	"author": "Anthony Brown <Anthony.Brown@nottingham.ac.uk> ()",
+	"license": "MIT",
+
+	"databox-type":"driver",
+
+	"tags": [
+		"monitor",
+		"os"
+	],
+	
+	"homepage": "https://github.com/me-box/databox-os-monitor-driver",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/me-box/databox-os-monitor-driver.git"
+	},
+
+	"resource-requirements": {
+    	"store":"databox-store-blob"
+	}
+}
