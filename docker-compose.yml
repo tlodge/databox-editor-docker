@@ -14,25 +14,6 @@ mongo:
   container_name:
     mongo
   
-#mosquitto:
-#  build:
-#   mosquitto
-#  ports:
-#    - "1883:1883"
-#  container_name:
-#   mosquitto
-
-#companionapp:
-#  build:
-#    databox-companion-app
-#  ports:
-#    - "8001:8001"
-#  links:
-#    - mosquitto
-#  command:
-#    /root/start.sh
-#  container_name:
-#    companion-app
 
 appserver:
   build:
@@ -49,47 +30,7 @@ appserver:
 mock-datasource:
   build:
     databox-datasource-mock
-# links:
-#    - mosquitto
   command:
     /root/start.sh
   container_name:
     mock-datasource 
-
-arbiter:
-  build:
-     databox-arbiter
-  ports:
-     - "8080:8080"
-  container_name:
-    arbiter
-
-#red:
-#  build:
-#    node-red-tester 
-#  ports:
-#    - "1880:1880"
-#  links:
-#    - mosquitto
-#    - arbiter
-#    - mock-datasource:databox-driver-mobile.store
-#  command:
-#    node /root/node-red/red.js
-#  container_name:
-#    red
-
-#editor:
-#  build:
-#    databox-editor
-#  ports:
-#    - "8080:8080"
-#  links:
-#    - redis
-#    - mongo
-#  volumes:
-#    - /var/run/docker.sock:/var/run/docker.sock 
-#  command:
-#    /root/start.sh
-#  container_name:
-#    databox-editor
-

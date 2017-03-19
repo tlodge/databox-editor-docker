@@ -7,5 +7,4 @@ RUN git clone https://github.com/tlodge/node-red-app-webserver.git
 #don't compile the client code again (as this requires native build)
 #RUN cd ./node-red-app-webserver/client && npm install && npm run build - instead we serve pre-built js
 RUN cd ./node-red-app-webserver/server && npm install
-#RUN cp ./node-red-app-webserver/client/static/app.js ./node-red-app-webserver/server/static/ui
 ADD start.sh /root
