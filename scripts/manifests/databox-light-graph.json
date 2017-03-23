@@ -1,0 +1,54 @@
+{
+	"manifest-version": 1,
+
+	"name": "databox-app-light-graph",
+	"version": "0.1.0",
+
+	"description": "A simple Databox app that plots mobile phone light sensor data",
+	"author": "Yousef Amar <yousef@amar.io> (http://yousefamar.com/)",
+	"license": "MIT",
+
+	"tags": [
+		"databox",
+		"app",
+		"mobile",
+		"phone",
+		"smartphone",
+		"light",
+		"sensor",
+		"sensingkit"
+	],
+
+	"homepage": "https://github.com/me-box/databox-app-light-graph",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/me-box/databox-app-light-graph.git"
+	},
+
+	"packages": [
+		{
+			"name": "Light Level Plotter",
+			"purpose": "To visualise your smartphone's light level in real time",
+			"install": "required",
+			"risks": "Estimating time of day and perhaps even location based on light patterns over time.",
+			"benefits": "A cool demo of plotting phone light levels.",
+			"datastores": [ "DS_light" ]
+		}
+	],
+
+	"allowed-combinations": [],
+
+	"datasources": [
+		{
+			"type": "light",
+			"required": true,
+			"name": "light",
+			"clientid": "DS_light",
+			"granularities": []
+		}
+	],
+
+	"resource-requirements": {
+		"store":"databox-store-blob"
+	}
+}
