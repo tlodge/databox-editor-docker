@@ -20,5 +20,6 @@ WORKDIR /usr/src/node-red
 # package.json contains Node-RED NPM module and node dependencies
 COPY conf/package.json /usr/src/node-red/
 RUN npm install
+COPY conf/Node.js /usr/src/node-red/node_modules/node-red/red/runtime/nodes/
 COPY conf/settings.js /data
 #CMD ["npm", "start", "--", "--userDir", "/data"]
