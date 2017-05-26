@@ -131,6 +131,9 @@ Node.prototype.send = function(msg) {
             if (!msg._msgid) {
                 msg._msgid = redUtil.generateId();
             }
+
+            //added by tlodge to record path
+            msg._dataid = redUtil.generateId();
            
             this.metric("send",msg);
 
@@ -155,6 +158,9 @@ Node.prototype.send = function(msg) {
 
     var sentMessageId = null;
 
+    //added by tlodge to record path
+    var sentMessageDataId = null;
+
     // for each output of node eg. [msgs to output 0, msgs to output 1, ...]
     for (var i = 0; i < numOutputs; i++) {
         var wires = this.wires[i]; // wires leaving output i                
@@ -178,6 +184,12 @@ Node.prototype.send = function(msg) {
                                 if (!sentMessageId) {
                                     sentMessageId = m._msgid;
                                 }
+
+                                //added by tlodge
+                                if (!sentMessageDataId){
+                                    sentMessageDataId = m._dataid;
+                                }
+
                                 if (msgSent) {
                                     var clonedmsg = redUtil.cloneMessage(m);
                                     sendEvents.push({n:node,m:clonedmsg});
@@ -196,6 +208,12 @@ Node.prototype.send = function(msg) {
     if (!sentMessageId) {
         sentMessageId = redUtil.generateId();
     }
+
+    //added by tlodge
+    if (!sentMessageDataId){
+        sentMessageDataId = redUtil.generateId();
+    }
+
     this.metric("send",{_msgid:sentMessageId});
 
     for (i=0;i<sendEvents.length;i++) {
@@ -204,6 +222,9 @@ Node.prototype.send = function(msg) {
         if (!ev.m._msgid) {
             ev.m._msgid = sentMessageId;
         }
+        
+        ev.m._dataid = sentMessageDataId;
+
         this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
         ev.n.receive(ev.m,this.id);
     }
@@ -215,6 +236,9 @@ Node.prototype.receive = function(msg, fromnid) {
     }
     if (!msg._msgid) {
         msg._msgid = redUtil.generateId();
+    }
+    if (!msg._dataid){
+        msg._dataid = redUtil.generateId();
     }
 
     //added by tlodge to record the data path
@@ -250,9 +274,9 @@ function _traverse(source, target, path, data){
     var node = flows.get(source);
     var msg = node._sent[target];
 
-    var hop = {source:source, target: target, msg:msg._msgid}
+    var hop = {source:source, target: target, msg:msg._dataid}
     path.push(hop);
-    data[msg._msgid]=msg;
+    data[msg._dataid]=msg;
 
     var parents = node._receivedFrom;
     
