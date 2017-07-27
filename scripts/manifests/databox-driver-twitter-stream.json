@@ -32,6 +32,6 @@
   ],
 
   "resource-requirements": {
-    "store":"databox-store-blob"
+    "store":"databox-store-blob-mongo"
   }
 }

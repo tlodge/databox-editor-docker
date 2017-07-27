@@ -8,4 +8,4 @@ RUN apt-get update
 RUN apt-get install -y mongodb-org
 RUN mkdir -p /data/mongo
 EXPOSE 27017
-CMD ["/usr/bin/mongod", "--dbpath", "/data/mongo"]
+#CMD ["/usr/bin/mongod", "--dbpath", "/data/mongo", "--smallfiles"]

@@ -132,9 +132,9 @@ Node.prototype.send = function(msg) {
                 msg._msgid = redUtil.generateId();
             }
 
-            //added by tlodge to record path
+            //added by tlodge to record path, and sender id
             msg._dataid = redUtil.generateId();
-           
+
             this.metric("send",msg);
 
             node = flows.get(this._wire);
@@ -223,6 +223,7 @@ Node.prototype.send = function(msg) {
             ev.m._msgid = sentMessageId;
         }
         
+        /* added by tlodge to record path,id */
         ev.m._dataid = sentMessageDataId;
 
         this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
@@ -241,6 +242,10 @@ Node.prototype.receive = function(msg, fromnid) {
         msg._dataid = redUtil.generateId();
     }
 
+    //added by tlodge to ensure msg has this node's id (i.e. all incoming messages will have the id of the node that sent them)
+    if (!msg.id){
+        msg.id = fromnid;
+    }     
     //added by tlodge to record the data path
     if (this._receivedFrom.indexOf(fromnid) === -1){
         this._receivedFrom.push(fromnid);
