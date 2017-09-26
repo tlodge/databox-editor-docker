@@ -141,6 +141,7 @@ Node.prototype.send = function(msg) {
             /* istanbul ignore else */
             if (node) {
                 //added by tlodge to record path
+                
                 this._sent[this._wire] = redUtil.cloneMessage(msg);
                 node.receive(msg, this.id);
             }
@@ -219,22 +220,16 @@ Node.prototype.send = function(msg) {
     for (i=0;i<sendEvents.length;i++) {
         var ev = sendEvents[i];
         /* istanbul ignore else */
-        if (!ev.m._msgid) {
-            ev.m._msgid = sentMessageId;
-        }
-        
-        /* added by tlodge to record path,id */
-        ev.m._dataid = sentMessageDataId;
-
-        if (ev.m && ev.m.id){
+        if (ev.n && ev.n.id){
             
-            this._sent[ev.m.id] = redUtil.cloneMessage(ev.m);
-           
-        }else{
-            console.log("could not get ev.m.id", JSON.stringify(ev,null,4));
+            if (!ev.m._msgid) {
+                ev.m._msgid = sentMessageId;
+            }
+            /* added by tlodge to record path,id */
+            ev.m._dataid = sentMessageDataId;
+            this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
+            ev.n.receive(ev.m,this.id);
         }
-        /* end of added by tlodge */
-        ev.n.receive(ev.m,this.id);
     }
 };
 
@@ -285,14 +280,13 @@ Node.prototype.path = function(){
 function _traverse(source, target, path, data){
     var node = flows.get(source);
     var msg = node._sent[target];
-
-    if (msg && msg._dataid){
+    if (msg){
         var hop = {source:source, target: target, msg:msg._dataid}
         path.push(hop);
         data[msg._dataid]=msg;
 
         var parents = node._receivedFrom;
-    
+        
         for (var i = 0; i < parents.length; i++){
             _traverse(parents[i], source, path, data);
         }
