@@ -226,10 +226,12 @@ Node.prototype.send = function(msg) {
         /* added by tlodge to record path,id */
         ev.m._dataid = sentMessageDataId;
 
-        if (ev.n && ev.n.id){
-            this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
+        if (ev.m && ev.m.id){
+            
+            this._sent[ev.m.id] = redUtil.cloneMessage(ev.m);
+           
         }else{
-            console.log("could not get ev.n.id", JSON.stringify(ev,null,4));
+            console.log("could not get ev.m.id", JSON.stringify(ev,null,4));
         }
         /* end of added by tlodge */
         ev.n.receive(ev.m,this.id);
@@ -284,14 +286,16 @@ function _traverse(source, target, path, data){
     var node = flows.get(source);
     var msg = node._sent[target];
 
-    var hop = {source:source, target: target, msg:msg._dataid}
-    path.push(hop);
-    data[msg._dataid]=msg;
+    if (msg && msg._dataid){
+        var hop = {source:source, target: target, msg:msg._dataid}
+        path.push(hop);
+        data[msg._dataid]=msg;
 
-    var parents = node._receivedFrom;
+        var parents = node._receivedFrom;
     
-    for (var i = 0; i < parents.length; i++){
-        _traverse(parents[i], source, path, data);
+        for (var i = 0; i < parents.length; i++){
+            _traverse(parents[i], source, path, data);
+        }
     }
 }
 
