@@ -226,7 +226,12 @@ Node.prototype.send = function(msg) {
         /* added by tlodge to record path,id */
         ev.m._dataid = sentMessageDataId;
 
-        this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
+        if (ev.n && ev.n.id){
+            this._sent[ev.n.id] = redUtil.cloneMessage(ev.m);
+        }else{
+            console.log("could not get ev.n.id", JSON.stringify(ev,null,4));
+        }
+        /* end of added by tlodge */
         ev.n.receive(ev.m,this.id);
     }
 };
