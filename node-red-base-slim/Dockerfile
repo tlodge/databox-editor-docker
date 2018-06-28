@@ -1,8 +1,7 @@
 FROM node:6-alpine
 
 RUN apk --update add git 
-RUN apk add --no-cache --virtual .build-dependencies make gcc g++ python && apk add --no-cache krb5-dev zeromq-dev 
-RUN npm install -g zmq
+RUN apk add --no-cache --virtual .build-dependencies make gcc g++ python && apk add --no-cache krb5-dev zeromq-dev && npm install -g zmq && npm install -g node-databox && apk del .build-dependencies
 
 # Home directory for Node-RED application source code.
 RUN mkdir -p /usr/src/node-red
@@ -25,4 +24,3 @@ COPY conf/package.json /usr/src/node-red/
 RUN npm install
 COPY conf/Node.js /usr/src/node-red/node_modules/node-red/red/runtime/nodes/
 COPY conf/settings.js /data
-#CMD ["npm", "start", "--", "--userDir", "/data"]

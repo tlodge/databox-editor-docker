@@ -13,4 +13,4 @@ ADD start.sh /root
 #add the latest node-red databox nodes
 WORKDIR /data/nodes
 RUN git clone https://github.com/tlodge/databox-nodered-nodes.git databox
-RUN cd /data/nodes/databox && npm link zmq && npm install
+RUN cd /data/nodes/databox && npm install && npm link node-databox 
